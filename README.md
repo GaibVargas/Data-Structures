@@ -2,7 +2,7 @@
 
 Repositório de estudos da disciplina de Estruturas de Dados da UFSC.
 Aqui você vai encontrar minhas implementações das principais estruturas de dados desenvolvidas
-como atividade durante o semestre, e alguns testes bobos.
+como atividade durante o semestre, as implementações de atividades avaliativas, e alguns testes bobos.
 
 ## Para testar
 
