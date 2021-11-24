@@ -31,3 +31,9 @@ No diretório raiz:
 ```
 
 Obs: Não use .cpp ao final do nome do arquivo de testes
+
+Exemplo:
+
+```cmd
+./avaliate ./lista-duplamente-encadeada/tests_doubly_linked_list
+```
