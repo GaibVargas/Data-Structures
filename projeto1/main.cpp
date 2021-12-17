@@ -70,7 +70,7 @@ int related_pixels(int** matriz, int height, int width) {
 //! Testa se existe a tag na linha
 /*!
   \param tag um std::string que representa uma tag xml
-  \param lina um std::string que representa uma linha do arquivo
+  \param linha um std::string que representa uma linha do arquivo
   \return um booleano
 */
 bool has_tag(std::string const& tag, std::string& line) {
@@ -80,7 +80,7 @@ bool has_tag(std::string const& tag, std::string& line) {
 //! Função que retorna valor definido entre tags xml
 /*!
   \param tag um std::string que representa uma tag xml
-  \param lina um std::string que representa uma linha do arquivo
+  \param linha um std::string que representa uma linha do arquivo
   \return um std::string que é o valor entre as tags
 */
 std::string get_value_between_tag(std::string const& tag, std::string& line) {
@@ -95,7 +95,7 @@ std::string get_value_between_tag(std::string const& tag, std::string& line) {
 
 //! Função que inicializa a leitura do arquivo
 /*!
-  /* É responsável também pelo output do programa, caso o arquivo seja bem formado
+  É responsável também pelo output do programa, caso o arquivo seja bem formado
   \param filename um std::string representando o nome do arquivo
 */
 void read_file(std::string& filename) {

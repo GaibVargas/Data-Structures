@@ -15,7 +15,7 @@ struct MalformadException : public std::exception
   }
 };
 
-//! Classe analizador de sintaxe xml
+//! Classe analisadora de sintaxe xml
 class AnalizeXML {
  public:
  //! Construtor
@@ -25,7 +25,7 @@ class AnalizeXML {
   AnalizeXML(std::string& filename):
     filename_{filename}
   {}
-  //! Inicializa a analiza
+  //! Inicializa a análise
   void analize() {
     read_file_by_lines();
   }
