@@ -1,6 +1,6 @@
+//! Copyright [2021] Gabriel de Vargas Coelho
 #ifndef STRUCTURES_LINKED_QUEUE
 #define STRUCTURES_LINKED_QUEUE
-//! Copyright [2021] Gabriel de Vargas Coelho
 
 #include <stdexcept>
 

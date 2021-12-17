@@ -1,6 +1,6 @@
+//! Copyright [2021] Gabriel de Vargas Coelho
 #ifndef STRUCTURES_LINKED_STACK
 #define STRUCTURES_LINKED_STACK
-//! Copyright [2021] Gabriel de Vargas Coelho
 
 #include <stdexcept>
 

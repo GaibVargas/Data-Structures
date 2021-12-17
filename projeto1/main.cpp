@@ -1,3 +1,4 @@
+//! Copyright [2021] Gabriel de Vargas Coelho
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -6,16 +7,24 @@
 #include "linked_queue.h"
 #include "analizeXML.cpp"
 
+//! Estrutura que representa um ponto da imagem
 struct Point {
   int x;
   int y;
 };
 
+//! Função para contabilizar conjuntos de pixeis relacionados
+/*!
+  \param matriz um ponteiro para um ponteiro da matriz da imagem
+  \param height um inteiro para a altura da imagem
+  \param width um inteiro para a largura da imagem
+  \return um inteiro que representa a quantia de conjuntos de pixeis relacionados
+*/
 int related_pixels(int** matriz, int height, int width) {
   structures::LinkedQueue<Point> queue;
   int label = 1;
   int** image = new int*[height];
-
+  //! Inicializa matriz auxiliar com zeros
   for (auto i = 0; i < height; ++i) {
     image[i] = new int[width];
   }
@@ -28,22 +37,22 @@ int related_pixels(int** matriz, int height, int width) {
       
         while (!queue.empty()) {
           auto point = queue.dequeue();
-          // Verifica direita
+          // Verifica à direita do pixel atual
           if (point.x + 1 < width && matriz[point.y][point.x + 1] == 1 && image[point.y][point.x + 1] == 0) {
             queue.enqueue(Point{point.x + 1, point.y});
             image[point.y][point.x + 1] = label;
           }
-          // Verifica esquerda
+          // Verifica à esquerda do pixel atual
           if (point.x - 1 >= 0 && matriz[point.y][point.x - 1] == 1 && image[point.y][point.x - 1] == 0) {
             queue.enqueue(Point{point.x - 1, point.y});
             image[point.y][point.x - 1] = label;
           }
-          // Verifica acima
+          // Verifica acima do pixel atual
           if (point.y + 1 < height && matriz[point.y + 1][point.x] == 1 && image[point.y + 1][point.x] == 0) {
             queue.enqueue(Point{point.x, point.y + 1});
             image[point.y + 1][point.x] = label;
           }
-          // Verifica abaixo
+          // Verifica abaixo do pixel atual
           if (point.y - 1 >= 0 && matriz[point.y - 1][point.x] == 1 && image[point.y - 1][point.x] == 0) {
             queue.enqueue(Point{point.x, point.y - 1});
             image[point.y - 1][point.x] = label;
@@ -58,10 +67,22 @@ int related_pixels(int** matriz, int height, int width) {
   return label - 1;
 }
 
+//! Testa se existe a tag na linha
+/*!
+  \param tag um std::string que representa uma tag xml
+  \param lina um std::string que representa uma linha do arquivo
+  \return um booleano
+*/
 bool has_tag(std::string const& tag, std::string& line) {
   return line.find(tag) != std::string::npos;
 }
 
+//! Função que retorna valor definido entre tags xml
+/*!
+  \param tag um std::string que representa uma tag xml
+  \param lina um std::string que representa uma linha do arquivo
+  \return um std::string que é o valor entre as tags
+*/
 std::string get_value_between_tag(std::string const& tag, std::string& line) {
   auto close_tag = tag.substr();
   close_tag.insert(1, "/");
@@ -72,6 +93,11 @@ std::string get_value_between_tag(std::string const& tag, std::string& line) {
   return value;
 }
 
+//! Função que inicializa a leitura do arquivo
+/*!
+  /* É responsável também pelo output do programa, caso o arquivo seja bem formado
+  \param filename um std::string representando o nome do arquivo
+*/
 void read_file(std::string& filename) {
   int index = 0;
   int** matriz;

@@ -1,3 +1,4 @@
+//! Copyright [2021] Gabriel de Vargas Coelho
 #ifndef ANALIZE_XML
 #define ANALIZE_XML
 
@@ -6,6 +7,7 @@
 #include <exception>
 #include "linked_stack.h"
 
+//! Erro de XML mal formado
 struct MalformadException : public std::exception
 {
 	const char* what () const throw () {
@@ -13,16 +15,21 @@ struct MalformadException : public std::exception
   }
 };
 
+//! Classe analizador de sintaxe xml
 class AnalizeXML {
  public:
+ //! Construtor
+ /*!
+  \param filename um std::string representando nome do arquivo
+ */
   AnalizeXML(std::string& filename):
     filename_{filename}
   {}
-
+  //! Inicializa a analiza
   void analize() {
     read_file_by_lines();
   }
-
+  //! Testa se arquivo é bem formado
   bool is_good() {
     if (formatted_ && stack_.size() == 0) {
       return true;
@@ -31,6 +38,7 @@ class AnalizeXML {
   }
   
  private:
+  //! Lê arquivo por linhas
   void read_file_by_lines() {
     std::string line;
     std::ifstream myfile (filename_);
@@ -40,7 +48,10 @@ class AnalizeXML {
 
     myfile.close();
   }
-
+  //! Identifica tags de uma linha do arquivo
+  /*!
+    \param line um std::string representado uma linha do arquivo 
+  */
   void get_xml_tags_from_line(std::string& line) {
     if (line.size() == 0) {
       return;
@@ -62,7 +73,10 @@ class AnalizeXML {
       }
     }
   }
-
+  //! Lida com a pilha
+  /*!
+    \param tag um std::string representando uma tag xml sem <>
+  */
   void handle_stack(std::string& tag) {
     if (tag.compare(0, 1, "/") != 0) {
       stack_.push(tag);
