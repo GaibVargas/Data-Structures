@@ -64,6 +64,11 @@ int related_pixels(int** matriz, int height, int width) {
     }
   }
 
+  for (auto i = 0; i < height; i++) {
+    delete[] image[i];
+  }
+  delete[] image;
+
   return label - 1;
 }
 
@@ -151,6 +156,11 @@ void read_file(std::string& filename) {
   }
 
   myfile.close();
+
+  for (auto i = 0; i < height_number; i++) {
+    delete[] matriz[i];
+  }
+  delete[] matriz;
 }
 
 int main() {
